@@ -25,17 +25,31 @@ const player = new CardPlayer("Player")
 /**
  * Calculates the score of a Blackjack hand
  * @param {Array} hand - Array of card objects with val, displayVal, suit properties
- * @returns {Object} blackJackScore -- sum
+ * @returns {Object} blackJackScore
  * @returns {number} blackJackScore.total 
  * @returns {boolean} blackJackScore.isSoft -- TODO
+ * By default, an Ace is treated as being worth 11
  */
 
-const total = function (hand) {
+const calcPoints = function (hand) {
     let sum = 0
+    let isSoft = false
     for (let card of hand) {
+        if (card.displayVal == 'Ace') {
+            if ((sum + card.val) >= 21) {
+                card.val = 1
+            } else {
+                isSoft = true
+            }
+        }
         sum = sum + card.val
     }
-    return sum
+    return {
+        sum: sum,
+        isSoft: isSoft
+    }
+
+
 }
 
 /**
@@ -54,18 +68,20 @@ let winner = undefined
 while (!endOfGame) {
     dealer.drawCard()
     player.drawCard()
-    let dealerTotal = total(dealer.hand)
-    let playerTotal = total(player.hand)
-    if (playerTotal == 21) {
+    let dealerTotal = calcPoints(dealer.hand)
+    let playerTotal = calcPoints(player.hand)
+    console.log("Dealer points", dealerTotal)
+    console.log("Player points", playerTotal)
+    if (playerTotal.sum == 21) {
         winner = player
         endOfGame = true
-    } else if (dealerTotal == 21) {
+    } else if (dealerTotal.sum == 21) {
         winner = dealer
         endOfGame = true
-    } else if (playerTotal > 21) {
+    } else if (playerTotal.sum > 21) {
         winner = dealer
         endOfGame = true
-    } else if (dealerTotal > 21) {
+    } else if (dealerTotal.sum > 21) {
         winner = player
         endOfGame = true
     }

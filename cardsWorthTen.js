@@ -23,7 +23,7 @@ const cards = [
  */
 const cardsWorthTen = cards => {
     res = []
-    for (card of cards) {
+    for (let card of cards) {
         if (card.val === 10) {
             res.push(card.displayVal)
         }

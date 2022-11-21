@@ -46,13 +46,13 @@ const getDeck = function () {
             deck.push(card)
         }
     }
-    // console.log(deck)
+    console.log(deck)
     return deck
 }
 
 // CHECKS
 const deck = getDeck();
-/* console.log(`Deck length equals 52? ${deck.length === 52}`);
+console.log(`Deck length equals 52? ${deck.length === 52}`);
 
 const randomCard = deck[Math.floor(Math.random() * 52)];
 
@@ -65,9 +65,9 @@ console.log(`Random card has suit? ${cardHasSuit}`);
 const cardHasDisplayVal = randomCard &&
     randomCard.displayVal &&
     typeof randomCard.displayVal === 'string';
-console.log(`Random card has display value? ${cardHasDisplayVal}`); */
+console.log(`Random card has display value? ${cardHasDisplayVal}`);
 
-// cardsWorthTen function that returns a comma separated string of the displayVals of only those cards worth exactly 10
+/* // cardsWorthTen function that returns a comma separated string of the displayVals of only those cards worth exactly 10
 
 const cardsWorthTen = function (deck) {
     let res = []
@@ -79,6 +79,6 @@ const cardsWorthTen = function (deck) {
     return res.join(',')
 }
 
-// console.log(cardsWorthTen(deck))
+console.log(cardsWorthTen(deck)) */
 
-module.exports = { getDeck };
+module.exports = { getDeck }; 
