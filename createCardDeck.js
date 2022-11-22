@@ -81,4 +81,4 @@ const cardsWorthTen = function (deck) {
 
 console.log(cardsWorthTen(deck)) */
 
-module.exports = { getDeck }; 
+// module.exports = { getDeck }; 
